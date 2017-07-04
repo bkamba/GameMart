@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-	<html>
+	<html id="main-page">
 	<head>
 		<title>GameMart Login</title>
 		<link rel="stylesheet" type="text/css" href="mainstyle.css">
@@ -14,55 +14,57 @@
 
 		<div class="login-border">
 			<h1>Welcome to GameMart</h1>
-			<form action="main.php" method="post">
+			<form action='{$_SERVER['PHP_SELF']}' method="post">
 			<p>Username: <input type="text" name="user"></p> 
 			<p>Password: <input type="password" name="pass"></p> 
 			<input type="submit" name="enter"> <br><br>
-			<a href="submit.php"> Don't have an account? </a>
+			<a href="submit.php" name="newAcc"> Don't have an account? </a>
 
 			</form>
 		</div>
 
 EOBODY;
-			$server = "localhost";
-			$user = "person";
-			$pass = "gamer";
-			$sql_db = "users";
-			$sql_table = "user_info";
+			session_start();
 
-			$myDB = connection($server, $user, $pass, $sql_db);
+			if (isset($_POST['user']) && isset($_POST['pass'])) {
+				$_SESSION['user'] = $_POST['user'];
+				$_SESSION['pass'] = $_POST['pass'];
 
-			$search = sprintf("select * from %s", $sql_table);
+				if(isset($_POST["enter"])) {
 
-			$sol = $myDB->query($search);
+					$search = sprintf("select * from %s", $sql_table);
 
-			$testing = [];
+					$sol = $myDB->query($search);
 
-			$check = "";
+					if($sol) {
+						$total_rows = $sol->num_rows;
 
-			if($sol) {
-				$total_rows = $sol->num_rows;
-
-				for ($i=0; $i < $total_rows; $i++) { 
-					$sol->data_seek($i);
-					$info = $sol->fetch_array(MYSQLI_ASSOC);
-				
-					$details = [];
-					if($info['username'] == $user ){
-						$p = $info['password'];
-						if(password_verify($_POST["password"], $p) ) {
-							header("Location: home.php");
-						} else {
-							$check .= "Invalid login attempt";
+						for ($i=0; $i < $total_rows; $i++) { 
+							$sol->data_seek($i);
+							$info = $sol->fetch_array(MYSQLI_ASSOC);
+						
+							$details = [];
+							if($info['username'] == $_POST["user"] ){
+								$p = $info['password'];
+								if($p == $_POST["pass"] ) {
+									$_SESSION['info'] = $info;
+									header("Location: home.php");
+								} else {
+									$check .= "<p id='show'> <strong> Invalid login attempt!! </strong> </p>";
+								}
+							} else {
+								$check .= "<p id='show'> <strong> Invalid login attempt!! </strong> </p>";
+							}
 						}
 					} else {
-						$check .= "Invalid login attempt";
+						echo "Query didnt work".mysqli_error();
 					}
 				}
-			} else {
-				echo "Query didnt work".mysqli_error();
 			}
 
+			if(isset($_POST['newAcc'])) {
+				header("Location: ");
+			}
 
 
 			$page = generatePage($body, $check);

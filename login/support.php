@@ -1,6 +1,14 @@
 <?php
+$server = "localhost";
+$dbuser = "person";
+$pass = "gamer";
+$sql_db = "users";
+$sql_table = "user_info";
+$check = "";
+$testing = [];
+$myDB = connection($server, $dbuser, $pass, $sql_db);
 
-function generatePage($body, $page, $title="Grade Submission") {
+function generatePage($body, $page, $title="GameMart") {
     $page = <<<EOPAGE
 <!doctype html>
 <html>
