@@ -4,6 +4,10 @@
         <meta charset="utf-8"/>
         <title>Create Account</title>
 
+        <style>
+            background: dodgerblue;
+        </style>
+
         <script>
             "use strict";
 
