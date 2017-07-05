@@ -18,7 +18,7 @@
 			<p>Username: <input type="text" name="user"></p> 
 			<p>Password: <input type="password" name="pass"></p> 
 			<input type="submit" name="enter"> <br><br>
-			<a href="submit.php" name="newAcc"> Don't have an account? </a>
+			<a href="create.php" name="newAcc"> Don't have an account? </a>
 
 			</form>
 		</div>
@@ -62,10 +62,7 @@ EOBODY;
 				}
 			}
 
-			if(isset($_POST['newAcc'])) {
-				header("Location: ");
-			}
-
+	
 
 			$page = generatePage($body, $check);
 
