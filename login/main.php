@@ -46,7 +46,7 @@ EOBODY;
 							$details = [];
 							if($info['username'] == $_POST["user"] ){
 								$p = $info['password'];
-								if($p == $_POST["pass"] ) {
+								if(password_verify($_POST["pass"], $p) ) {
 									$_SESSION['info'] = $info;
 									header("Location: home.php");
 								} else {
