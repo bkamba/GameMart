@@ -1,4 +1,4 @@
-html {
+#main-page {
 	background: url(http://localhost/CMSC389N/GameMart/images/cover.jpg) no-repeat center center fixed;
 	background-size: cover;
 }
@@ -12,5 +12,39 @@ html {
 	position: relative;
 	text-align: center;
 	vertical-align: middle;
+	
 	width: 300px;
+}
+
+#show {
+	font-size: 30px;
+	color: red;
+	text-align: center;
+	border: 2px solid #3399ff;
+	background-color: black;
+}
+
+
+#page-color {
+	background-color: #33adff;
+}
+.btn-home {
+	position: absolute;
+	top: 8px;
+right: 16px;
+}
+
+h1 {
+	text-shadow:  2px 2px 4px gray;
+}
+
+#border-welcome {
+	border: 5px solid black;
+	border-style: ridge;
+	width: 500px;
+	height: 300px;
+	padding-left: 80px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
 }
