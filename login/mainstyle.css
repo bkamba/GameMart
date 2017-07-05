@@ -48,3 +48,19 @@ h1 {
 	margin-right: auto;
 	position: relative;
 }
+
+.label {
+	color: #333;
+    background-color: #fff;
+    border-color: gray;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+}
+
+input[type=file] {
+	position: absolute;
+	right: -40px;
+	top: 161px;
+}
