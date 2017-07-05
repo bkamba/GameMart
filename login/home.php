@@ -11,9 +11,28 @@
 </head>
 <body id="page-color">	
 <?php
+	require ("User.php");
 	require("support.php");
 	session_start();
-	$name = $_SESSION['info']['name'];
+	$search = sprintf("select * from %s", $sql_table);
+
+		$sol = $myDB->query($search);
+
+		if($sol->num_rows != 0) {
+			// echo "HEY!";
+			$total_rows = $sol->num_rows;
+
+			for ($i=0; $i < $total_rows; $i++) { 
+				$sol->data_seek($i);
+				$info = $sol->fetch_array(MYSQLI_ASSOC);
+
+				if($info['username'] == $_SESSION['user']) {
+					$name = $info['name'];
+				}
+
+			}
+		}
+
 
 	$body = <<<EOBODY
 		<header class="container" id="border-welcome">
@@ -23,7 +42,7 @@
 				<img src="../images/person.png" width="100px" height="100px" class="center-block"> <br><br>
 				<a href="account.php"><button type="button" class="btn btn-default center-inline" name="accountpage">Account</button></a>
 				<a href="dashboard.php"><button type="button" class="btn btn-default center-inline" name="dashboardpage">Dashboard</button></a>
-				<button type="button" class="btn btn-default center-inline" name="log_off">Log Off</button>	
+				<a href="signout.php"><button type="button" class="btn btn-default center-inline" name="log_off">Log Off</button></a>
 				</nav>
 			</div> 
 		</header>
@@ -35,6 +54,5 @@ EOBODY;
 
 ?>
 
-</a>
 </body>
 </html>

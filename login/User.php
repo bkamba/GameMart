@@ -56,5 +56,10 @@
             age=$this->gpa, password=\"$this->password\" where
             username=\"$this->username\";";
         }
+
+        public function insert_image($price, $imgPath, $image) {
+            return "insert into user_images values (\"$this->name\",
+            $price, \"$imgPath\", \"$image\");";
+        }
     }
 ?>

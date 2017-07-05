@@ -3,11 +3,10 @@
     <head>
         <meta charset="utf-8"/>
         <title>Create Account</title>
-
-        <style>
-            background: dodgerblue;
-        </style>
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="mainstyle.css">
         <script>
             "use strict";
 
@@ -37,24 +36,25 @@
             }
         </script>
     </head>
-    <body>
-        <h1>Create Account</h1>
-        <form action="insert.php" method="post">
-            <label for="username">Username: </label>
-            <input type="text" id="username" name="username" required/>
-            <br><br>
-            <strong>Password: </strong>
-            <input type="password" id="password" name="password" required/>
-            <br><br>
-            <strong>Name: </strong>
-            <input type="text" id="name" name="name" required/>
-            <br><br>
-            <strong>Age: </strong>
-            <input type="number" id="age" name="age" required/>
-            <br><br>
-            <input type="submit" id="submit" name="submit" onclick="validate()"/>
-        </form>
-
+    <body id="page-color">
+        <section class="container" id="border-welcome">
+             <h1>Create Account</h1> <a href='main.php'><button class='btn btn-default btn-xs btn-home'>Return Home</button></a>
+                <form action="insert.php" method="post">
+                    <label for="username">Username: </label>
+                    <input type="text" id="username" name="username" required/>
+                    <br><br>
+                    <strong>Password: </strong>
+                    <input type="password" id="password" name="password" required/>
+                    <br><br>
+                    <strong>Name: </strong>
+                    <input type="text" id="name" name="name" required/>
+                    <br><br>
+                    <strong>Age: </strong>
+                    <input type="number" id="age" name="age" required/>
+                    <br><br>
+                    <input type="submit" id="submit" name="submit" onclick="validate()"/>
+                </form>
+        </section>
         <?php
             session_start();
 

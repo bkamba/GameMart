@@ -49,6 +49,17 @@ h1 {
 	position: relative;
 }
 
+#display-border {
+	border: 5px solid black;
+	width: 500px;
+	height: 500px;
+	border-style: ridge;
+	padding-left: 80px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}	
+
 .label {
 	color: #333;
     background-color: #fff;
@@ -61,6 +72,6 @@ h1 {
 
 input[type=file] {
 	position: absolute;
-	right: -40px;
-	top: 155px;
+	right: -15px;
+	top: 199px;
 }

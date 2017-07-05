@@ -23,7 +23,7 @@
   			border: 5px solid black;
   			border-style: ridge;
   			width: 500px;
-  			height: 300px;
+  			height: 800px;
   			padding-left: 80px;
   			margin-left: auto;
     		margin-right: auto;
@@ -34,41 +34,56 @@
 <body>
 	<?php
 		require("support.php");
-		$body = "";
+		$success = "";
 
-		$body = <<<EOBODY
-			
-			<section class="container" id="border-welcome">
+		$table = "user_images";
+		$default = "../images/";
+		$search = sprintf("select * from %s", $table);
 
-			<div class="row">
-					<h1> DASHBOARD </h1> <a href="home.php"><button class="btn btn-default btn-xs btn-home">Return Home</button></a>
-					<div class="col-sm-6">
-						
-					</div>
-					<div class="col-sm-6">
-						
-					</div>
-					<div class="col-sm-6">
-						
-					</div>
-					<div class="col-sm-6">
-						
-					</div>
-					<div class="col-sm-6">
-						
-					</div>
-					<div class="col-sm-6">
-						
-					</div>
-			
-			</div>
-		
-	</section>
-EOBODY;
+		$sol = $myDB->query($search);
+
+		if($sol->num_rows != 0) {
+			// echo "HEY!";
+			$total_rows = $sol->num_rows;
+
+			$success .= 
+			"<section class='container'>
+				<div class='row'  id='border-welcome'>
+				<h1> DASHBOARD </h1> <a href='home.php'><button class='btn btn-default btn-xs btn-home'>Return Home</button></a>";
+
+			$success .= "<form action='{$_SERVER['PHP_SELF']}' method='post'>";
+			$success .= "<table>";
+			for ($i=0; $i < $total_rows; $i++) { 
+				$sol->data_seek($i);
+				$info = $sol->fetch_array(MYSQLI_ASSOC);
+				$success .= "<div class='col-sm-6'>";
+				$src = $info['image'];
+				$cash = $info['price'];
+				$pic = "$default"."$src";
+				$ttl = $info['title'];
+				$success .= "<p> $ttl (\$$cash)</p>";
+				$success .= "<img src='$pic' width='100px' height='100px'><br>";
+				$success .= "<input type='submit' class='btn btn-default btn-xs center-inline' name='purchase' value='Buy'><br><br>";
+				$success .= "</div>";
+
+			}
+			$success .= "</table>";
+			$success .= "</div";
+			$success .= "</section>";
+			$success .= "</form>";
 
 
+		} else {
+			$success .= "<br> You have nothing to display";
+		}	
 
-	$page = generatePage($body, "");
+
+		if(isset($_POST['purchase']) ) {
+			header("Location: purchase.php");
+		}
+
+
+	$page = generatePage($success, "");
 
 	echo $page;
 

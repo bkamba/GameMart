@@ -25,6 +25,7 @@
 
 EOBODY;
 			session_start();
+			$p = "";
 
 			if (isset($_POST['user']) && isset($_POST['pass'])) {
 				$_SESSION['user'] = $_POST['user'];
@@ -45,17 +46,24 @@ EOBODY;
 						
 							$details = [];
 							if($info['username'] == $_POST["user"] ){
-								$p = $info['password'];
-								if(password_verify($_POST["pass"], $p) ) {
-									$_SESSION['info'] = $info;
-									header("Location: home.php");
-								} else {
-									$check .= "<p id='show'> <strong> Invalid login attempt!! </strong> </p>";
-								}
+								$p .= $info['password'];
+							} 
+						}
+
+						if($p == "") {
+							$check .= "<p id='show'> <strong> No user associated with that name </strong> </p>";
+						} else {
+							if(password_verify($_POST["pass"], $p) ) {
+								$_SESSION['info'] = $info;
+								header("Location: home.php");
 							} else {
 								$check .= "<p id='show'> <strong> Invalid login attempt!! </strong> </p>";
 							}
 						}
+
+
+
+
 					} else {
 						echo "Query didnt work".mysqli_error();
 					}
@@ -67,6 +75,7 @@ EOBODY;
 			$page = generatePage($body, $check);
 
 			echo $page;
+
 		?>
 
 
