@@ -16,7 +16,7 @@
         $name = trim($_POST["name"]);
         $age = trim($_POST["age"]);
         $user = new User($name, $age, $username, $password);
-        $result = $myDB->query(user.insert());
+        $result = $myDB->query($user.insert());
 
         if ($result) {
             header("Location: ./main.php");
