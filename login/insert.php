@@ -3,10 +3,9 @@
     require("support.php");
     session_start();
 
-    $db = connectToDB("localhost", "person", "gamer", "user_info");
     $username = trim($_POST["username"]);
     $query = "select * from user_info where username = \"$username\";";
-    $result = $db->query($query);
+    $result = $myDB->query($query);
 
     if ($result) {
         $_SESSION["usernameError"] = true;
@@ -17,12 +16,12 @@
         $name = trim($_POST["name"]);
         $age = trim($_POST["age"]);
         $user = new User($name, $age, $username, $password);
-        $result = $db->query(user.insert());
+        $result = $myDB->query(user.insert());
 
         if ($result) {
             header("Location: ./main.php");
         } else {
-            echo "FAIL: ".$db->error;
+            echo "FAIL: ".$myDB->error;
         }
     }
 ?>
