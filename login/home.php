@@ -36,12 +36,13 @@
 
 	$body = <<<EOBODY
 		<header class="container" id="border-welcome">
-			<div class="row" >
-				<h1 class="col-sm-8 col-md-offset-1 center-inline">Welcome $name,</h1>
-				<nav class="col-sm-8 col-md-offset-1 ">
-				<img src="../images/person.png" width="100px" height="100px" class="center-block"> <br><br>
+			<div class="row" style="text-align:center;">
+				<h1 class="col-sm-12 col-md-offset-1">Welcome $name,</h1>
+				<nav class="col-sm-12 col-md-offset-1 ">
+				<img src="../images/person.png" width="100px" height="100px"> <br><br>
 				<a href="account.php"><button type="button" class="btn btn-default center-inline" name="accountpage">Account</button></a>
 				<a href="dashboard.php"><button type="button" class="btn btn-default center-inline" name="dashboardpage">Dashboard</button></a>
+				<a href="../chat/chatroom.php"><button type="button" class="btn btn-default center-inline" name="accountpage">Chat</button></a>
 				<a href="signout.php"><button type="button" class="btn btn-default center-inline" name="log_off">Log Off</button></a>
 				</nav>
 			</div> 
