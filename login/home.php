@@ -28,6 +28,11 @@
 
 				if($info['username'] == $_SESSION['user']) {
 					$name = $info['name'];
+					$user = $info['username'];
+					$age = $info['age'];
+					$password = $info['password'];
+					$account_user = new User($name, $age, $user, $password);
+					$_SESSION['info'] = $account_user;
 				}
 
 			}

@@ -26,11 +26,10 @@
 			$info = $sol->fetch_array(MYSQLI_ASSOC);
 
 			if($info['username'] == $_SESSION['user']) {
-				$name = $info['name'];
-				$user = $info['username'];
-				$age = $info['age'];
-				$password = $info['password'];
-				$account_user = new User($name, $age, $user, $password);
+				$account_user = $_SESSION['info'];
+				$name = $account_user->getName();
+				$age = $account_user->getAge();
+				$user = $account_user->getUserName();
 			}
 
 		}
